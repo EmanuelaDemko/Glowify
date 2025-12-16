@@ -1,6 +1,6 @@
-package repository;
+package com.example.project.repository;
 
-import com.glowify.model.MedicalRecord;
+import com.example.project.model.MedicalRecord;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

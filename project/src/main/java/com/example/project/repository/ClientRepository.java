@@ -1,6 +1,6 @@
-package repository;
+package com.example.project.repository;
 
-import com.glowify.model.Client;
+import com.example.project.model.Client;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ClientRepository extends JpaRepository<Client, Long> {

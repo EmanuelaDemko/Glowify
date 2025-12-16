@@ -1,4 +1,4 @@
-package com.glowify.model;
+package com.example.project.model;
 
 import jakarta.persistence.*;
 import java.util.*;

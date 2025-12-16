@@ -1,6 +1,6 @@
-package repository;
+package com.example.project.repository;
 
-import com.glowify.model.ServiceItem;
+import com.example.project.model.ServiceItem;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

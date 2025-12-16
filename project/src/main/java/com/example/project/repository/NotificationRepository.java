@@ -1,6 +1,6 @@
-package repository;
+package com.example.project.repository;
 
-import com.glowify.model.Notification;
+import com.example.project.model.Notification;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.time.LocalDateTime;
