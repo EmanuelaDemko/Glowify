@@ -10,18 +10,15 @@ public class Notification {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String channel; // EMAIL | SMS | INTERNAL
+    private String channel;
 
-    private String recipient; // email or phone or userId
-
+    private String recipient;
     private String message;
 
     private LocalDateTime sendAt;
 
     private boolean sent;
 
-    // getters/setters
-    // ...
     public Long getId(){return id;}
     public void setId(Long id){this.id=id;}
     public String getChannel(){return channel;}

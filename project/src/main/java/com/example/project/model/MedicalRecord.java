@@ -13,7 +13,7 @@ public class MedicalRecord {
     private Client client;
 
     @ManyToOne
-    private Staff staff; // who recorded
+    private Staff staff;
 
     private LocalDateTime createdAt;
 

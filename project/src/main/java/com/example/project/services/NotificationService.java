@@ -35,7 +35,7 @@ public class NotificationService {
                 notificationRepository.findBySentFalseAndSendAtBefore(LocalDateTime.now());
 
         for (Notification n : pending) {
-            // TODO: integrate email/SMS here
+
             n.setSent(true);
             notificationRepository.save(n);
         }
