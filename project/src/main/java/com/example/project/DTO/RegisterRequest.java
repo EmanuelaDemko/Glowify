@@ -1,4 +1,4 @@
-package com.example.project.DTO;
+package com.example.project.dto;
 
 public class RegisterRequest {
 
@@ -6,6 +6,10 @@ public class RegisterRequest {
     private String password;
     private String fullName;
     private String email;
+    private String phone;
+
+    private boolean registerAsClient = true;
+    private boolean registerAsStaff = false;
 
     public String getUsername() { return username; }
     public void setUsername(String username) { this.username = username; }
@@ -18,4 +22,14 @@ public class RegisterRequest {
 
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
+
+    public String getPhone() { return phone; }
+    public void setPhone(String phone) { this.phone = phone; }
+
+    public boolean isRegisterAsClient() { return registerAsClient; }
+    public void setRegisterAsClient(boolean registerAsClient) { this.registerAsClient = registerAsClient; }
+
+    public boolean isRegisterAsStaff() { return registerAsStaff; }
+    public void setRegisterAsStaff(boolean registerAsStaff) { this.registerAsStaff = registerAsStaff; }
 }
+
