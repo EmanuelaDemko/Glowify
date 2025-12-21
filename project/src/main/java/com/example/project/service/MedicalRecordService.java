@@ -1,4 +1,4 @@
-package com.example.project.services;
+package com.example.project.service;
 
 import com.example.project.model.Client;
 import com.example.project.model.MedicalRecord;
@@ -7,7 +7,6 @@ import com.example.project.repository.ClientRepository;
 import com.example.project.repository.MedicalRecordRepository;
 import com.example.project.repository.StaffRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;

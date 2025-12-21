@@ -1,10 +1,9 @@
-package com.example.project.services;
+package com.example.project.service;
 
 import com.example.project.model.Notification;
 import com.example.project.repository.NotificationRepository;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;

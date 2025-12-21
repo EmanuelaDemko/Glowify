@@ -6,7 +6,6 @@ import java.time.LocalDate;
 @Entity
 @Table(name="clients")
 public class Client extends User {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private LocalDate birthDate;
     private String address;
 

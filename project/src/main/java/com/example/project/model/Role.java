@@ -11,9 +11,8 @@ public class Role {
     private Long id;
 
     @Column(unique=true, nullable=false)
-    private String name; // e.g. ROLE_ADMIN, ROLE_RECEPTIONIST, ROLE_STAFF, ROLE_CLIENT
+    private String name;
 
-    // getters/setters
     public Long getId(){return id;}
     public void setId(Long id){this.id=id;}
     public String getName(){return name;}

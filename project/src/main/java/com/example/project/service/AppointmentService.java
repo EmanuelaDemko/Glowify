@@ -1,6 +1,6 @@
+package com.example.project.service;
 
-package com.example.project.services;
-
+import com.example.project.DTO.AppointmentRequest;
 import com.example.project.model.*;
 import com.example.project.repository.*;
 
@@ -9,8 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
+
 @Service
 public class AppointmentService {
+
     private final AppointmentRepository appointmentRepo;
     private final ServiceItemRepository serviceRepo;
     private final ClientRepository clientRepo;
@@ -19,11 +21,33 @@ public class AppointmentService {
     public AppointmentService(AppointmentRepository appointmentRepo,
                               ServiceItemRepository serviceRepo,
                               ClientRepository clientRepo,
-                              StaffRepository staffRepo){
+                              StaffRepository staffRepo) {
         this.appointmentRepo = appointmentRepo;
         this.serviceRepo = serviceRepo;
         this.clientRepo = clientRepo;
         this.staffRepo = staffRepo;
+    }
+
+    @Transactional
+    public Appointment create(AppointmentRequest request) {
+        return createAppointment(
+                request.getClientId(),
+                request.getStaffId(),
+                request.getServiceId(),
+                request.getDateTime()
+        );
+    }
+
+    public List<Appointment> getAll() {
+        return appointmentRepo.findAll();
+    }
+
+    public Appointment getById(Long id) {
+        return appointmentRepo.findById(id).orElseThrow();
+    }
+
+    public void delete(Long id) {
+        appointmentRepo.deleteById(id);
     }
 
     @Transactional
@@ -40,7 +64,6 @@ public class AppointmentService {
         ap.setEndTime(start.plusMinutes(service.getDurationMinutes() == null ? 60 : service.getDurationMinutes()));
         ap.setStatus(Appointment.Status.PENDING);
 
-
         return appointmentRepo.save(ap);
     }
 
@@ -48,11 +71,11 @@ public class AppointmentService {
         return appointmentRepo.findByStaffIdAndStartTimeBetween(staffId, from, to);
     }
 
-    public List<Appointment> listForClient(Long clientId){
+    public List<Appointment> listForClient(Long clientId) {
         return appointmentRepo.findByClientId(clientId);
     }
 
-    public Appointment changeStatus(Long appointmentId, Appointment.Status status){
+    public Appointment changeStatus(Long appointmentId, Appointment.Status status) {
         Appointment a = appointmentRepo.findById(appointmentId).orElseThrow();
         a.setStatus(status);
         return appointmentRepo.save(a);

@@ -6,11 +6,9 @@ import jakarta.persistence.*;
 @Entity
 @Table(name="staff")
 public class Staff extends User {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String position; // estetist, infermier, manager...
+    private String position;
     private String specialty;
 
-    // getters/setters
     public String getPosition(){return position;}
     public void setPosition(String position){this.position=position;}
     public String getSpecialty(){return specialty;}

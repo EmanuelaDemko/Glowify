@@ -1,6 +1,6 @@
 package com.example.project.controller;
 
-import com.example.project.dto.AppointmentRequest;
+import com.example.project.DTO.AppointmentRequest;
 import com.example.project.model.Appointment;
 import com.example.project.service.AppointmentService;
 

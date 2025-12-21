@@ -1,13 +1,12 @@
+// UserController.java
 package com.example.project.controller;
 
-import com.example.project.dto.UserDTO;
 import com.example.project.model.User;
 import com.example.project.repository.UserRepository;
-
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/users")
@@ -20,21 +19,40 @@ public class UserController {
     }
 
     @GetMapping
-    public List<UserDTO> getAll() {
-        return userRepo.findAll().stream().map(this::toDTO).collect(Collectors.toList());
+    public List<User> getAll() {
+        return userRepo.findAll();
     }
 
-    private UserDTO toDTO(User user) {
-        UserDTO dto = new UserDTO();
+    @GetMapping("/{id}")
+    public ResponseEntity<User> getById(@PathVariable Long id) {
+        return userRepo.findById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
 
-        dto.setId(user.getId());
-        dto.setUsername(user.getUsername());
-        dto.setFullName(user.getFullName());
-        dto.setEmail(user.getEmail());
-        dto.setPhone(user.getPhone());
-        dto.setRole(user.getRoles().stream()
-                .findFirst().map(r -> r.getName()).orElse("USER"));
+    @PostMapping
+    public User create(@RequestBody User user) {
+        user.setId(null);
+        return userRepo.save(user);
+    }
 
-        return dto;
+    @PutMapping("/{id}")
+    public ResponseEntity<User> update(@PathVariable Long id, @RequestBody User body) {
+        return userRepo.findById(id).map(existing -> {
+            if (body.getUsername() != null) existing.setUsername(body.getUsername());
+            if (body.getPassword() != null) existing.setPassword(body.getPassword());
+            if (body.getFullName() != null) existing.setFullName(body.getFullName());
+            if (body.getEmail() != null) existing.setEmail(body.getEmail());
+            if (body.getPhone() != null) existing.setPhone(body.getPhone());
+            if (body.getRoles() != null && !body.getRoles().isEmpty()) existing.setRoles(body.getRoles());
+            return ResponseEntity.ok(userRepo.save(existing));
+        }).orElse(ResponseEntity.notFound().build());
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        if (!userRepo.existsById(id)) return ResponseEntity.notFound().build();
+        userRepo.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 }

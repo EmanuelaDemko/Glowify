@@ -1,9 +1,8 @@
-package com.example.project.services;
+package com.example.project.service;
 
 import com.example.project.model.ServiceItem;
 import com.example.project.repository.ServiceItemRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 

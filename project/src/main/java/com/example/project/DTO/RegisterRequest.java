@@ -1,4 +1,4 @@
-package com.example.project.dto;
+package com.example.project.DTO;
 
 public class RegisterRequest {
 
