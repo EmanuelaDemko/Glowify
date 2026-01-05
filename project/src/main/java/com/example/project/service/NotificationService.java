@@ -39,5 +39,6 @@ public class NotificationService {
             notificationRepository.save(n);
         }
     }
+
 }
 
